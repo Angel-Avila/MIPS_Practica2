@@ -71,7 +71,7 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	Multiplexer2to1
 
-} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/ALU.v {1 {vlog -work work {C:\Arq\MIPS_Projects\MIPS_Processor\Sources\ALU.v}
+} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/ALU.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/ALU.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module ALU
 
@@ -85,19 +85,19 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	ALUControl
 
-} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/DataMemory.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/DataMemory.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module DataMemory
-
-Top level modules:
-	DataMemory
-
 } {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/ShiftLeft2.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/ShiftLeft2.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module ShiftLeft2
 
 Top level modules:
 	ShiftLeft2
+
+} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/DataMemory.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/DataMemory.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module DataMemory
+
+Top level modules:
+	DataMemory
 
 } {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/MIPS_Processor_TB.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/MIPS_Processor_TB.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
@@ -106,18 +106,18 @@ Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 Top level modules:
 	MIPS_Processor_TB
 
-} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/Adder32bits.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/Adder32bits.v
-Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
--- Compiling module Adder32bits
-
-Top level modules:
-	Adder32bits
-
 } {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/PC_Register.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/PC_Register.v
 Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling module PC_Register
 
 Top level modules:
 	PC_Register
+
+} {} {}} C:/Arq/MIPS_Projects/MIPS_Processor/Sources/Adder32bits.v {1 {vlog -work work C:/Arq/MIPS_Projects/MIPS_Processor/Sources/Adder32bits.v
+Model Technology ModelSim ALTERA vlog 10.1d Compiler 2012.11 Nov  2 2012
+-- Compiling module Adder32bits
+
+Top level modules:
+	Adder32bits
 
 } {} {}}

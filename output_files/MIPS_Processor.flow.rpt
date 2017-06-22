@@ -1,5 +1,5 @@
 Flow report for MIPS_Processor
-Wed Jun 21 21:12:18 2017
+Thu Jun 22 02:30:57 2017
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,15 +40,15 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Wed Jun 21 21:12:18 2017           ;
+; Flow Status                        ; Successful - Thu Jun 22 02:30:57 2017           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; MIPS_Processor                                  ;
 ; Top-level Entity Name              ; MIPS_Processor                                  ;
 ; Family                             ; Cyclone IV E                                    ;
 ; Device                             ; EP4CE115F29C7                                   ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 8                                               ;
-;     Total combinational functions  ; 8                                               ;
+; Total logic elements               ; 10                                              ;
+;     Total combinational functions  ; 10                                              ;
 ;     Dedicated logic registers      ; 5                                               ;
 ; Total registers                    ; 5                                               ;
 ; Total pins                         ; 74                                              ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 06/21/2017 21:12:14 ;
+; Start date & time ; 06/22/2017 02:30:54 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; MIPS_Processor      ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+---------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 220295148647523.149809753403908 ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 220295148647523.149811665413240 ; --            ; --          ; --         ;
 ; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --         ;
 ; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --            ; --          ; --         ;
 ; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                            ; --            ; --          ; --         ;
@@ -91,8 +91,8 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:04     ; 1.0                     ; 454 MB              ; 00:00:05                           ;
-; Total                ; 00:00:04     ; --                      ; --                  ; 00:00:05                           ;
+; Analysis & Synthesis ; 00:00:04     ; 1.0                     ; 457 MB              ; 00:00:04                           ;
+; Total                ; 00:00:04     ; --                      ; --                  ; 00:00:04                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
