@@ -55,7 +55,7 @@ wire ORForBranch;
 wire ALUSrc_wire;
 wire RegWrite_wire;
 wire Zero_wire;
-wire [2:0] ALUOp_wire;
+wire [5:0] ALUOp_wire; // <<
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
