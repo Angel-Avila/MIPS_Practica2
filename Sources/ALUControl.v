@@ -31,6 +31,8 @@ localparam R_Type_NOR    = 12'b00_0000_10_0111; // 00/27
 localparam I_Type_ADDI   = 12'b00_1000_xx_xxxx; // 08/00
 localparam I_Type_ORI    = 12'b00_1101_xx_xxxx; // 0D/00
 localparam I_Type_LUI    = 12'b00_1111_xx_xxxx; // 0F/00 // <<
+localparam I_Type_LW     = 12'b10_0011_xx_xxxx; // 23/00 // <<
+localparam I_Type_SW     = 12'b10_1011_xx_xxxx; // 2B/00 // <<
 localparam I_Type_BEQ    = 12'b00_0100_xx_xxxx; // 04/00 // <<
 
 
@@ -50,7 +52,9 @@ always@(Selector)begin
 		R_Type_SRL:    ALUControlValues = 4'b0110;// <<
 		I_Type_ADDI:   ALUControlValues = 4'b0011;// *
 		I_Type_ORI:    ALUControlValues = 4'b0001;// #
-		I_Type_LUI:    ALUControlValues = 4'b0101;// <<
+		I_Type_LUI:    ALUControlValues = 4'b0101; // <<
+		I_Type_LW:     ALUControlValues = 4'b1000; // <<
+		I_Type_SW:     ALUControlValues = 4'b1001; // <<
 		I_Type_BEQ:    ALUControlValues = 4'b0100;// =
 		default: ALUControlValues = 4'b1001;
 	endcase

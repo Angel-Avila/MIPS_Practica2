@@ -34,6 +34,8 @@ localparam SUB = 4'b0100;// | BEQ
 localparam LUI = 4'b0101;// <<
 localparam SRL = 4'b0110;// <<
 localparam SLL = 4'b0111;// <<
+localparam LW  = 4'b1000;// <<
+localparam SW  = 4'b1001;// <<
 
    
    always @ (A or B or ALUOperation)
@@ -60,6 +62,10 @@ localparam SLL = 4'b0111;// <<
 		  SLL: // sll
 		   ALUResult= B << Shamt;                      
 		  
+		  	LW:
+			 ALUResult = ((A + B) - 32'h1001_0000) / 4;
+		   SW:
+			 ALUResult =((A + B) - 32'h1001_0000) / 4;
 			
 		default:
 			ALUResult= 0;
