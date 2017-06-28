@@ -54,13 +54,13 @@ wire ZeroANDBrachEQ;
 wire ORForBranch;
 wire ALUSrc_wire;
 wire RegWrite_wire;
+wire MemRead_wire; 		// <
+wire MemtoReg_wire; 		// <
+wire MemWrite_wire; 		// <
+wire ReadData_wire;		// <
+wire WriteData_wire;		// <
 wire Zero_wire;
-wire MemRead_wire; 				// <<
-wire MemtoReg_wire; 				// <<
-wire MemWrite_wire; 				// <<
-wire [31:0] ReadData_wire;		// <<
-wire [31:0] WriteData_wire;	// <<
-wire [5:0] ALUOp_wire; 			// <<
+wire [5:0] ALUOp_wire; 	// <<
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
@@ -196,6 +196,21 @@ ArithmeticLogicUnitControl
 
 );
 
+
+
+ALU
+ArithmeticLogicUnit 
+(
+	.ALUOperation(ALUOperation_wire),
+	.A(ReadData1_wire),
+	.B(ReadData2OrInmmediate_wire),
+	.Shamt(Instruction_wire[10:6]), // <
+	.Zero(Zero_wire),
+	.ALUResult(ALUResult_wire)
+);
+
+assign ALUResultOut = ALUResult_wire;
+
 Multiplexer2to1
 #(
 	.NBits(32)
@@ -220,20 +235,6 @@ Data_Memory
 	.clk(clk),
 	.ReadData(ReadData_wire)
 );
-
-ALU
-ArithmeticLogicUnit 
-(
-	.ALUOperation(ALUOperation_wire),
-	.A(ReadData1_wire),
-	.B(ReadData2OrInmmediate_wire),
-	.Shamt(Instruction_wire[10:6]),
-	.Zero(Zero_wire),
-	.ALUResult(ALUResult_wire)
-);
-
-assign ALUResultOut = ALUResult_wire;
-
 
 endmodule
 
