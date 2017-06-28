@@ -23,35 +23,40 @@ module Control
 	output MemWrite,
 	output ALUSrc,
 	output RegWrite,
-	output [2:0]ALUOp
+	output [5:0]ALUOp
 );
-localparam R_Type = 0;
-localparam I_Type_ADDI = 6'h8;
-localparam I_Type_ORI = 6'h0d;
+							 // OP Code
+localparam R_Type      = 6'h00;
+localparam I_Type_ADDI = 6'h08;
+localparam I_Type_ORI  = 6'h0d;
+localparam I_Type_LUI  = 6'h0f; // <<
+localparam I_Type_BEQ  = 6'h04; // <<  
 
 
-reg [10:0] ControlValues;
+reg [14:0] ControlValues; // << 
 
 always@(OP) begin
 	casex(OP)
-		R_Type:       ControlValues= 11'b1_001_00_00_111;
-		I_Type_ADDI:  ControlValues= 11'b0_101_00_00_100;
-		I_Type_ORI:   ControlValues= 11'b0_101_00_00_101;
+		R_Type:       ControlValues = 14'b1_001_00_00_000000; // 00 h // << 
+		I_Type_ADDI:  ControlValues = 14'b0_101_00_00_001000; // 08 h // << 
+		I_Type_ORI:   ControlValues = 14'b0_101_00_00_001101; // 0D h // << 
+		I_Type_LUI:   ControlValues = 14'b0_101_00_00_001111; // 0F h // << 
+		I_Type_BEQ:   ControlValues = 14'b0_000_00_01_000100; // 04 h // << 
 		
 		default:
-			ControlValues= 10'b0000000000;
+			ControlValues = 14'b00000000000000; // <<
 		endcase
 end	
 	
-assign RegDst = ControlValues[10];
-assign ALUSrc = ControlValues[9];
-assign MemtoReg = ControlValues[8];
-assign RegWrite = ControlValues[7];
-assign MemRead = ControlValues[6];
-assign MemWrite = ControlValues[5];
-assign BranchNE = ControlValues[4];
-assign BranchEQ = ControlValues[3];
-assign ALUOp = ControlValues[2:0];	
+assign RegDst 		= ControlValues[13];
+assign ALUSrc 		= ControlValues[12];
+assign MemtoReg	= ControlValues[11];
+assign RegWrite	= ControlValues[10];
+assign MemRead 	= ControlValues[9];
+assign MemWrite 	= ControlValues[8];
+assign BranchNE	= ControlValues[7];
+assign BranchEQ 	= ControlValues[6];
+assign ALUOp 		= ControlValues[5:0]; //GreenCard OpCode // << Se incrementó de 
 
 endmodule
 
