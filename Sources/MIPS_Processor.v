@@ -27,7 +27,7 @@
 
 module MIPS_Processor
 #(
-	parameter MEMORY_DEPTH = 32
+	parameter MEMORY_DEPTH = 256
 )
 
 (
@@ -74,6 +74,13 @@ wire [31:0] ALUResult_wire;
 wire [31:0] PC_4_wire;
 wire [31:0] InmmediateExtendAnded_wire;
 wire [31:0] PCtoBranch_wire;
+/////////////////////////////////////////
+wire [31:0] ShiftedInmmediateExtend_wire;
+wire [31:0] BranchAdder_wire;
+wire BranchORGate_wire;
+wire BranchANDZero_wire;
+wire [31:0] MUX_ForBranch_wire;
+
 integer ALUStatus;
 
 
@@ -102,7 +109,7 @@ ProgramCounter
 (
 	.clk(clk),
 	.reset(reset),
-	.NewPC(PC_4_wire),
+	.NewPC(MUX_ForBranch_wire), //MUX_ForBranch_wire
 	.PCValue(PC_wire)
 );
 
@@ -132,9 +139,74 @@ PC_Puls_4
 //******************************************************************/
 //******************************************************************/
 //******************************************************************/
+
+
+//  ____                       _               
+// |  _ \                     | |              
+// | |_) |_ __ __ _ _ __   ___| |__   ___  ___ 
+// |  _ <| '__/ _` | '_ \ / __| '_ \ / _ \/ __|
+// | |_) | | | (_| | | | | (__| | | |  __/\__ \
+// |____/|_|  \__,_|_| |_|\___|_| |_|\___||___/
+//                                             
+
+ShiftLeft2
+BranchShifter 
+(   
+	.DataInput(InmmediateExtend_wire),
+   .DataOutput(ShiftedInmmediateExtend_wire)
+
+);
+
+
+Adder32bits
+BranchAdder
+(
+	.Data0(PC_4_wire),
+	.Data1(ShiftedInmmediateExtend_wire),
+	
+	.Result(BranchAdder_wire)
+);
+
+
+
+ORGate
+BranchORGate
+(
+	.A(BranchNE_wire),
+	.B(BranchEQ_wire),
+	.C(BranchORGate_wire)
+);
+
+
+ANDGate
+BranchANDGate
+(
+	.A(Zero_wire),
+	.B(BranchORGate_wire),
+	.C(BranchANDZero_wire)
+);
+
+
 Multiplexer2to1
 #(
-	.NBits(5)
+	.NBits(32)
+)
+MUX_ForBranch
+(
+	.Selector(BranchANDZero_wire),
+	.MUX_Data0(PC_4_wire),
+	.MUX_Data1(BranchAdder_wire),
+	
+	.MUX_Output(MUX_ForBranch_wire)
+
+);
+
+//******************************************************************/
+//******************************************************************/
+
+Multiplexer2to1
+#(
+	.NBits(32)
 )
 MUX_ForRTypeAndIType
 (

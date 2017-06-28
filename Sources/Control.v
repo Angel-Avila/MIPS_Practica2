@@ -32,6 +32,7 @@ localparam I_Type_ORI  = 6'h0d;
 localparam I_Type_LUI  = 6'h0f; // << 
 localparam I_Type_LW	  = 6'h23; // <<
 localparam I_Type_SW	  = 6'h2b; // <<
+localparam I_Type_BEQ  = 6'h04; // <<  
 
 
 reg [14:0] ControlValues; // << 
@@ -44,6 +45,8 @@ always@(OP) begin
 		I_Type_LUI:   ControlValues = 14'b0_101_00_00_001111; // 0f // << 
 		I_Type_LW:    ControlValues = 14'b0_111_10_00_100011; // 23 // <<
 		I_Type_SW:    ControlValues = 14'b0_100_01_00_101011; // 2b // <<
+		I_Type_BEQ:   ControlValues = 14'b0_000_00_01_000100; // 04 // << 
+		
 		default:
 			ControlValues = 14'b00000000000000; // <<
 		endcase
@@ -57,7 +60,7 @@ assign MemRead 	= ControlValues[9];
 assign MemWrite 	= ControlValues[8];
 assign BranchNE	= ControlValues[7];
 assign BranchEQ 	= ControlValues[6];
-assign ALUOp 		= ControlValues[5:0]; //GreenCard OpCode // << 
+assign ALUOp 		= ControlValues[5:0]; //GreenCard OpCode // << Se incrementó de 
 
 endmodule
 

@@ -27,10 +27,10 @@ module ALU
 	output reg [31:0]ALUResult
 );
 localparam AND = 4'b0000;
-localparam OR  = 4'b0001;
+localparam OR  = 4'b0001;// | ORI
 localparam NOR = 4'b0010;
-localparam ADD = 4'b0011;
-localparam SUB = 4'b0100;
+localparam ADD = 4'b0011;// | ADDI
+localparam SUB = 4'b0100;// | BEQ
 localparam LUI = 4'b0101;// <<
 localparam SRL = 4'b0110;// <<
 localparam SLL = 4'b0111;// <<
@@ -41,25 +41,25 @@ localparam SW  = 4'b1001;// <<
    always @ (A or B or ALUOperation)
      begin
 		case (ALUOperation)
-		  ADD: // add
+		  ADD: // add | addi
 			ALUResult = A + B;
-		  SUB: // sub
+		  SUB: // sub | beq
 			ALUResult = A - B;
 			
 		  AND: // and
 			ALUResult = A & B;
 			
-		  OR:  // or
+		  OR:  // or  | ori
 			ALUResult = A | B;
 		  NOR: // nor
 			ALUResult = ~(A|B);
 			
 		  LUI: // lui
-			ALUResult = {B[15:0], 16'b0};
+			ALUResult = {B[15:0], 16'b0}; // Carga el INMEDIATO en la parte alta y concatena 16 0's en su parte baja
 
-		  SRL:
-		   ALUResult= B >> Shamt;
-		  SLL:
+		  SRL: // srl
+		   ALUResult= B >> Shamt; 
+		  SLL: // sll
 		   ALUResult= B << Shamt;                      
 		  
 		  	LW:

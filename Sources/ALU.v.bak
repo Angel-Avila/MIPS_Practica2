@@ -60,8 +60,6 @@ localparam SLL = 4'b0111;// <<
 		  SLL:
 		   ALUResult= B << Shamt;                      
 		  
-			//LW:
-			//ALUResult = 
 			
 		default:
 			ALUResult= 0;
