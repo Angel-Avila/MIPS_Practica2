@@ -5,6 +5,7 @@ add wave -noupdate -color Red -itemcolor red /MIPS_Processor_TB/reset
 add wave -noupdate /MIPS_Processor_TB/PortIn
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/ALUResultOut
 add wave -noupdate /MIPS_Processor_TB/PortOut
+add wave -noupdate /MIPS_Processor_TB/DUV/Instruction_wire
 add wave -noupdate -divider Control
 add wave -noupdate /MIPS_Processor_TB/DUV/ControlUnit/RegDst
 add wave -noupdate /MIPS_Processor_TB/DUV/ControlUnit/BranchEQ
@@ -50,8 +51,15 @@ add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/Data_Memory/Address
 add wave -noupdate -radix hexadecimal {/MIPS_Processor_TB/DUV/Data_Memory/ram[2]}
 add wave -noupdate -radix hexadecimal {/MIPS_Processor_TB/DUV/Data_Memory/ram[1]}
 add wave -noupdate -radix hexadecimal {/MIPS_Processor_TB/DUV/Data_Memory/ram[0]}
+add wave -noupdate -divider Jump
+add wave -noupdate -label ShiftIN /MIPS_Processor_TB/DUV/JumpShifter/DataInput
+add wave -noupdate -label ShiftOUT /MIPS_Processor_TB/DUV/JumpShifter/DataOutput
+add wave -noupdate /MIPS_Processor_TB/DUV/MUX_ForJumps/Selector
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJumps/MUX_Data0
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJumps/MUX_Data1
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJumps/MUX_Output
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {17 ps} 0}
+WaveRestoreCursors {{Cursor 1} {5 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
@@ -67,4 +75,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {63 ps}
+WaveRestoreZoom {0 ps} {38 ps}

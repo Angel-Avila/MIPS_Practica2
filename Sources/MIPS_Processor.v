@@ -58,9 +58,13 @@ wire Zero_wire;
 wire MemRead_wire; 				// <<
 wire MemtoReg_wire; 				// <<
 wire MemWrite_wire; 				// <<
+wire Jump_wire;					// <<
 wire [31:0] ReadData_wire;		// <<
 wire [31:0] WriteData_wire;	// <<
 wire [5:0] ALUOp_wire; 			// <<
+wire [27:0] JumpShift_wire;	// <<
+wire [31:0] ShiftedJump_wire;	// <<
+wire [31:0] MUX_ForJumpOutput_wire; 	// <<
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
@@ -101,6 +105,7 @@ ControlUnit
 	.RegWrite(RegWrite_wire),
 	.MemRead(MemRead_wire),		// <
 	.MemtoReg(MemtoReg_wire),	// <
+	.Jump(Jump_wire),
 	.MemWrite(MemWrite_wire)	// <
 );
 
@@ -109,7 +114,7 @@ ProgramCounter
 (
 	.clk(clk),
 	.reset(reset),
-	.NewPC(MUX_ForBranch_wire), //MUX_ForBranch_wire
+	.NewPC(MUX_ForJumpOutput_wire), 
 	.PCValue(PC_wire)
 );
 
@@ -157,6 +162,13 @@ BranchShifter
 
 );
 
+ShiftLeft2
+JumpShifter 
+(   
+	.DataInput({6'b0, Instruction_wire[25:0]}),
+   .DataOutput(ShiftedJump_wire)
+
+);
 
 Adder32bits
 BranchAdder
@@ -199,6 +211,19 @@ MUX_ForBranch
 	
 	.MUX_Output(MUX_ForBranch_wire)
 
+);
+
+Multiplexer2to1
+#(
+	.NBits(32)
+)
+MUX_ForJumps
+(
+	.Selector(Jump_wire),
+	.MUX_Data0(MUX_ForBranch_wire),
+	.MUX_Data1({4'b0, ShiftedJump_wire[27:0]}),
+	
+	.MUX_Output(MUX_ForJumpOutput_wire)
 );
 
 //******************************************************************/
@@ -279,7 +304,6 @@ MUX_ForWriteData
 	.MUX_Data1(ReadData_wire),
 	
 	.MUX_Output(WriteData_wire)
-
 );
 
 DataMemory
@@ -292,6 +316,7 @@ Data_Memory
 	.clk(clk),
 	.ReadData(ReadData_wire)
 );
+
 
 ALU
 ArithmeticLogicUnit 
