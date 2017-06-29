@@ -50,7 +50,7 @@ always@(OP) begin
 		I_Type_LW:    ControlValues = 15'b00_111_10_00_100011; // 23 // <<
 		I_Type_SW:    ControlValues = 15'b00_100_01_00_101011; // 2b // <<
 		I_Type_BEQ:   ControlValues = 15'b00_000_00_01_000100; // 04 // << 
-    I_Type_BEQ:   ControlValues = 15'b00_000_00_01_000100; // 04 h // << 
+		I_Type_BNE:   ControlValues = 15'b00_000_00_10_000101; // 05 h // <<
 		J_Type_J:     ControlValues = 15'b10_000_00_00_000010; // 04 // << 
 		
 		default:
