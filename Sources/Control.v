@@ -36,7 +36,7 @@ localparam I_Type_SW	  = 6'h2b; // <<
 localparam I_Type_BEQ  = 6'h04; // <<  
 
 
-reg [14:0] ControlValues; // << 
+reg [15:0] ControlValues; // << 
 
 always@(OP) begin
 	casex(OP)
