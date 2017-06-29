@@ -34,6 +34,7 @@ localparam I_Type_LUI    = 12'b00_1111_xx_xxxx; // 0F/00 // <<
 localparam I_Type_LW     = 12'b10_0011_xx_xxxx; // 23/00 // <<
 localparam I_Type_SW     = 12'b10_1011_xx_xxxx; // 2B/00 // <<
 localparam I_Type_BEQ    = 12'b00_0100_xx_xxxx; // 04/00 // <<
+localparam I_Type_BNE    = 12'b00_0101_xx_xxxx; // 05/00 // <<
 
 
 reg [3:0] ALUControlValues;
@@ -48,14 +49,15 @@ always@(Selector)begin
 		R_Type_NOR:    ALUControlValues = 4'b0010;
 		R_Type_ADD:    ALUControlValues = 4'b0011;// *
 		R_Type_SUB:    ALUControlValues = 4'b0100;// =
-		R_Type_SLL:    ALUControlValues = 4'b0111;// <<
-		R_Type_SRL:    ALUControlValues = 4'b0110;// <<
+		R_Type_SLL:    ALUControlValues = 4'b0111;//		 <<
+		R_Type_SRL:    ALUControlValues = 4'b0110;//		 <<
 		I_Type_ADDI:   ALUControlValues = 4'b0011;// *
 		I_Type_ORI:    ALUControlValues = 4'b0001;// #
-		I_Type_LUI:    ALUControlValues = 4'b0101; // <<
-		I_Type_LW:     ALUControlValues = 4'b1000; // <<
-		I_Type_SW:     ALUControlValues = 4'b1001; // <<
+		I_Type_LUI:    ALUControlValues = 4'b0101;//		 <<
+		I_Type_LW:     ALUControlValues = 4'b1000;//		 <<
+		I_Type_SW:     ALUControlValues = 4'b1001;//		 <<
 		I_Type_BEQ:    ALUControlValues = 4'b0100;// =
+		I_Type_BNE:    ALUControlValues = 4'b1010;//		 <<
 		default: ALUControlValues = 4'b1001;
 	endcase
 end

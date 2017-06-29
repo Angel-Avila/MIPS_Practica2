@@ -36,6 +36,7 @@ localparam SRL = 4'b0110;// <<
 localparam SLL = 4'b0111;// <<
 localparam LW  = 4'b1000;// <<
 localparam SW  = 4'b1001;// <<
+localparam BNE = 4'b1010;// <<
 
    
    always @ (A or B or ALUOperation)
@@ -62,10 +63,13 @@ localparam SW  = 4'b1001;// <<
 		  SLL: // sll
 		   ALUResult= B << Shamt;                      
 		  
-		  	LW:
-			 ALUResult = ((A + B) - 32'h1001_0000) / 4;
-		   SW:
-			 ALUResult =((A + B) - 32'h1001_0000) / 4;
+		  LW:  // lw
+			ALUResult = ( (A + B) - 32'h1001_0000 ) / 4;
+		  SW:  // sw
+			ALUResult = ( (A + B) - 32'h1001_0000 ) / 4;
+			
+		  BNE: // bne
+		   ALUResult = ( (A - B) == 0)? 1'b1 : 1'b0;
 			
 		default:
 			ALUResult= 0;
