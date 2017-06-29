@@ -55,16 +55,18 @@ wire ORForBranch;
 wire ALUSrc_wire;
 wire RegWrite_wire;
 wire Zero_wire;
-wire MemRead_wire; 				// <<
-wire MemtoReg_wire; 				// <<
-wire MemWrite_wire; 				// <<
-wire Jump_wire;					// <<
-wire [31:0] ReadData_wire;		// <<
-wire [31:0] WriteData_wire;	// <<
-wire [5:0] ALUOp_wire; 			// <<
-wire [27:0] JumpShift_wire;	// <<
-wire [31:0] ShiftedJump_wire;	// <<
+wire JrFlag_wire; 							// <<
+wire MemRead_wire; 							// <<
+wire MemtoReg_wire; 							// <<
+wire MemWrite_wire; 							// <<
+wire Jump_wire;								// <<
+wire [31:0] ReadData_wire;					// <<
+wire [31:0] WriteData_wire;				// <<
+wire [5:0] ALUOp_wire; 						// <<
+wire [27:0] JumpShift_wire;				// <<
+wire [31:0] ShiftedJump_wire;				// <<
 wire [31:0] MUX_ForJumpOutput_wire; 	// <<
+wire [31:0] MUX_ForJrOutput_wire; 		// <<
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
@@ -114,7 +116,7 @@ ProgramCounter
 (
 	.clk(clk),
 	.reset(reset),
-	.NewPC(MUX_ForJumpOutput_wire), 
+	.NewPC(MUX_ForJrOutput_wire), 
 	.PCValue(PC_wire)
 );
 
@@ -228,7 +230,32 @@ MUX_ForJumps
 
 //******************************************************************/
 //******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
 
+Multiplexer2to1
+#(
+	.NBits(32)
+)
+MUX_ForJr
+(
+	.Selector(JrFlag_wire),
+	.MUX_Data0(MUX_ForJumpOutput_wire),
+	.MUX_Data1(ALUResult_wire),
+	
+	.MUX_Output(MUX_ForJrOutput_wire)
+);
+
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
+//******************************************************************/
 Multiplexer2to1
 #(
 	.NBits(32)
@@ -289,8 +316,8 @@ ArithmeticLogicUnitControl
 (
 	.ALUOp(ALUOp_wire),
 	.ALUFunction(Instruction_wire[5:0]),
-	.ALUOperation(ALUOperation_wire)
-
+	.ALUOperation(ALUOperation_wire),
+	.JrFlag(JrFlag_wire)
 );
 
 Multiplexer2to1
