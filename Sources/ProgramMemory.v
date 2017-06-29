@@ -24,7 +24,10 @@ module ProgramMemory
 );
 wire [(DATA_WIDTH-1):0] RealAddress;
 
-assign RealAddress = {2'b0,Address[(DATA_WIDTH-1):2]};
+wire [(DATA_WIDTH-1):0] alligned_address;
+assign alligned_address = Address - 'h40_0000;
+
+assign RealAddress = {2'b0,alligned_address[(DATA_WIDTH-1):2]};
 
 	// Declare the ROM variable
 	reg [DATA_WIDTH-1:0] rom[MEMORY_DEPTH-1:0];

@@ -37,6 +37,7 @@ localparam SLL = 4'b0111;// <<
 localparam LW  = 4'b1000;// <<
 localparam SW  = 4'b1001;// <<
 localparam BNE = 4'b1010;// <<
+localparam JR  = 4'b1011;// <<
 
    
    always @ (A or B or ALUOperation)
@@ -70,6 +71,9 @@ localparam BNE = 4'b1010;// <<
 			
 		  BNE: // bne
 		   ALUResult = ( (A - B) == 0)? 1'b1 : 1'b0;
+			
+			JR:
+			 ALUResult = A;
 			
 		default:
 			ALUResult= 0;
