@@ -35,6 +35,7 @@ localparam I_Type_LUI    = 12'b00_1111_xx_xxxx; // 0F/00 // <<
 localparam I_Type_LW     = 12'b10_0011_xx_xxxx; // 23/00 // <<
 localparam I_Type_SW     = 12'b10_1011_xx_xxxx; // 2B/00 // <<
 localparam I_Type_BEQ    = 12'b00_0100_xx_xxxx; // 04/00 // <<
+localparam I_Type_BNE    = 12'b00_0101_xx_xxxx; // 05/00 // <<
 
 
 reg [4:0] ALUControlValues;
@@ -44,9 +45,7 @@ assign Selector = {ALUOp, ALUFunction};
 
 always@(Selector)begin
 	casex(Selector)
-		R_Type_JR: 		ALUControlValues = 5'b1_1010;// <<
 
-		
 		R_Type_AND:    ALUControlValues = 5'b0_0000;
 		R_Type_OR: 		ALUControlValues = 5'b0_0001;// #
 		R_Type_NOR:    ALUControlValues = 5'b0_0010;
@@ -55,14 +54,17 @@ always@(Selector)begin
 		R_Type_SLL:    ALUControlValues = 5'b0_0111;// <<
 		R_Type_SRL:    ALUControlValues = 5'b0_0110;// <<
 		
+    R_Type_JR: 		ALUControlValues = 5'b1_1011;// <<
+    
 		I_Type_ADDI:   ALUControlValues = 5'b0_0011;// *
 		I_Type_ORI:    ALUControlValues = 5'b0_0001;// #
 		I_Type_LUI:    ALUControlValues = 5'b0_0101;// <<
 		I_Type_LW:     ALUControlValues = 5'b0_1000;// <<
 		I_Type_SW:     ALUControlValues = 5'b0_1001;// <<
 		I_Type_BEQ:    ALUControlValues = 5'b0_0100;// =
-		
+		I_Type_BNE:    ALUControlValues = 5'b0_1010;// <<
 		default: ALUControlValues = 5'b0_1001;
+
 	endcase
 end
 

@@ -33,13 +33,16 @@ localparam I_Type_ORI  = 6'h0d;
 localparam I_Type_LUI  = 6'h0f; // << 
 localparam I_Type_LW	  = 6'h23; // <<
 localparam I_Type_SW	  = 6'h2b; // <<
-localparam I_Type_BEQ  = 6'h04; // <<  
+localparam I_Type_BEQ  = 6'h04; // << 
+localparam I_Type_BNE  = 6'h05; // << 
 localparam J_Type_J	  = 6'h02; // <<
+
 
 reg [15:0] ControlValues; // << 
 
 always@(OP) begin
 	casex(OP)
+
 		R_Type:       ControlValues = 15'b01_001_00_00_000000; // 00 // << 
 		I_Type_ADDI:  ControlValues = 15'b00_101_00_00_001000; // 08 // << 
 		I_Type_ORI:   ControlValues = 15'b00_101_00_00_001101; // 0d // << 
@@ -47,6 +50,7 @@ always@(OP) begin
 		I_Type_LW:    ControlValues = 15'b00_111_10_00_100011; // 23 // <<
 		I_Type_SW:    ControlValues = 15'b00_100_01_00_101011; // 2b // <<
 		I_Type_BEQ:   ControlValues = 15'b00_000_00_01_000100; // 04 // << 
+    I_Type_BEQ:   ControlValues = 15'b00_000_00_01_000100; // 04 h // << 
 		J_Type_J:     ControlValues = 15'b10_000_00_00_000010; // 04 // << 
 		
 		default:
