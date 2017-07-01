@@ -60,6 +60,7 @@ wire MemRead_wire; 							// <<
 wire MemtoReg_wire; 							// <<
 wire MemWrite_wire; 							// <<
 wire Jump_wire;								// <<
+wire Jal_wire;									// <<
 wire [31:0] ReadData_wire;					// <<
 wire [31:0] WriteData_wire;				// <<
 wire [5:0] ALUOp_wire; 						// <<
@@ -67,6 +68,8 @@ wire [27:0] JumpShift_wire;				// <<
 wire [31:0] ShiftedJump_wire;				// <<
 wire [31:0] MUX_ForJumpOutput_wire; 	// <<
 wire [31:0] MUX_ForJrOutput_wire; 		// <<
+wire [31:0] MUX_ForJalOutput_wire;		// <<
+wire [31:0] MUX_ForReg_PCOutput_wire; 	// <<
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
@@ -105,10 +108,11 @@ ControlUnit
 	.ALUOp(ALUOp_wire),
 	.ALUSrc(ALUSrc_wire),
 	.RegWrite(RegWrite_wire),
-	.MemRead(MemRead_wire),		// <
-	.MemtoReg(MemtoReg_wire),	// <
-	.Jump(Jump_wire),
-	.MemWrite(MemWrite_wire)	// <
+	.MemRead(MemRead_wire),		// <<
+	.MemtoReg(MemtoReg_wire),	// <<
+	.Jump(Jump_wire),				// <<
+	.MemWrite(MemWrite_wire),	// <<
+	.Jal(Jal_wire)					// <<
 );
 
 PC_Register
@@ -249,6 +253,32 @@ MUX_ForJr
 	.MUX_Output(MUX_ForJrOutput_wire)
 );
 
+Multiplexer2to1
+#(
+	.NBits(32)
+)
+MUX_ForJal
+(
+	.Selector(Jal_wire),
+	.MUX_Data0(WriteRegister_wire),
+	.MUX_Data1(31),
+	
+	.MUX_Output(MUX_ForJalOutput_wire)
+);
+
+Multiplexer2to1
+#(
+	.NBits(32)
+)
+MUX_ForReg_PC
+(
+	.Selector(Jal_wire),
+	.MUX_Data0(WriteData_wire),
+	.MUX_Data1(PC_4_wire),
+	
+	.MUX_Output(MUX_ForReg_PCOutput_wire)
+);
+
 //******************************************************************/
 //******************************************************************/
 //******************************************************************/
@@ -278,10 +308,10 @@ Register_File
 	.clk(clk),
 	.reset(reset),
 	.RegWrite(RegWrite_wire),
-	.WriteRegister(WriteRegister_wire),
+	.WriteRegister(MUX_ForJalOutput_wire),
 	.ReadRegister1(Instruction_wire[25:21]),
 	.ReadRegister2(Instruction_wire[20:16]),
-	.WriteData(WriteData_wire),
+	.WriteData(MUX_ForReg_PCOutput_wire),
 	.ReadData1(ReadData1_wire),
 	.ReadData2(ReadData2_wire)
 

@@ -54,7 +54,7 @@ always@(Selector)begin
 		R_Type_SLL:    ALUControlValues = 5'b0_0111;// <<
 		R_Type_SRL:    ALUControlValues = 5'b0_0110;// <<
 		
-    R_Type_JR: 		ALUControlValues = 5'b1_1011;// <<
+		R_Type_JR: 		ALUControlValues = 5'b1_1011;// <<
     
 		I_Type_ADDI:   ALUControlValues = 5'b0_0011;// *
 		I_Type_ORI:    ALUControlValues = 5'b0_0001;// #

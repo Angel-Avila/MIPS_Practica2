@@ -386,7 +386,7 @@ Register_k1
 
 
 
-Register
+Register	
 Register_gp
 (
 	.clk(clk),
@@ -398,6 +398,9 @@ Register_gp
 
 
 Register
+#(		
+	.resetValue('h1001_0400)		
+)
 Register_sp
 (
 	.clk(clk),
