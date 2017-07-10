@@ -25,6 +25,42 @@ add wave -noupdate -color {Orange Red} -itemcolor {Orange Red} -radix hexadecima
 add wave -noupdate -color {Medium Slate Blue} -itemcolor {Medium Slate Blue} -radix hexadecimal /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/B
 add wave -noupdate /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/Zero
 add wave -noupdate /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/ALUResult
+add wave -noupdate -divider Pipe_IF_ID
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/Instruction_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/Instruction_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/PC_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/PC_OUT
+add wave -noupdate -divider Pipe_ID_EX
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/BranchEQ_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/BranchEQ_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/BranchNE_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/BranchNE_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Jump_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Jump_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemRead_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemRead_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemWrite_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemWrite_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemToReg_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/MemToReg_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Jal_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Jal_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/PC_PlusFour_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/PC_PlusFour_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Shifted_Instruction_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Shifted_Instruction_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/A_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/A_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/B_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/B_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/ALUOp_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/ALUOp_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/RD2_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/RD2_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Shamt_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/Shamt_OUT
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/JrFlag_IN
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/DecodeExecute_Register/JrFlag_OUT
 add wave -noupdate -divider RegisterFile
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/RegWrite
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/WriteRegister
@@ -33,7 +69,7 @@ add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/ReadRegister2
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/WriteData
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/ReadData1
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/ReadData2
-add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/Intercnection_wire
+add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/Register_File/Intercnection_wire
 add wave -noupdate /MIPS_Processor_TB/DUV/Register_File/SelectRegister_wire
 add wave -noupdate -divider Registers
 add wave -noupdate -label a0 -radix hexadecimal /MIPS_Processor_TB/DUV/Register_File/Register_a0/DataOutput
@@ -67,9 +103,9 @@ add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Data0
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Data1
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Output
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {0 ps} 0}
+WaveRestoreCursors {{Cursor 1} {9 ps} 0}
 quietly wave cursor active 1
-configure wave -namecolwidth 150
+configure wave -namecolwidth 165
 configure wave -valuecolwidth 100
 configure wave -justifyvalue left
 configure wave -signalnamewidth 1
@@ -83,4 +119,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {84 ps}
+WaveRestoreZoom {0 ps} {65 ps}
