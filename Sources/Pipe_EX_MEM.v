@@ -9,6 +9,8 @@ module Pipe_EX_MEM
 	input MemWrite_IN,
 	input MemToReg_IN,
 	input Jal_IN,
+	input RegWrite_IN,
+	input [4:0]  rt_IN,
 	input [31:0] PC_PlusFour_IN,
 	input [31:0] BranchAdder_IN,
 	input [31:0] Shifted_Instruction_IN,
@@ -24,6 +26,8 @@ module Pipe_EX_MEM
 	output reg MemWrite_OUT,
 	output reg MemToReg_OUT,
 	output reg Jal_OUT,
+	output reg RegWrite_OUT,
+	output reg [4:0]  rt_OUT,
 	output reg [31:0] PC_PlusFour_OUT,
 	output reg [31:0] BranchAdder_OUT,
 	output reg [31:0] Shifted_Instruction_OUT,
@@ -45,6 +49,8 @@ always@(negedge clk)
 		MemWrite_OUT = MemWrite_IN;
 		MemToReg_OUT = MemToReg_IN;
 		Jal_OUT = Jal_IN;
+		RegWrite_OUT = RegWrite_IN;
+		rt_OUT = rt_IN;
 		PC_PlusFour_OUT = PC_PlusFour_IN;
 		BranchAdder_OUT = BranchAdder_IN;
 		Shifted_Instruction_OUT = Shifted_Instruction_IN;
