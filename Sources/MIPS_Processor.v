@@ -421,7 +421,7 @@ MemoryWriteback_Register
 ShiftLeft2
 BranchShifter 
 (   
-	.DataInput(ReadData2OrInmmediate_wire),
+	.DataInput(EX_ExtendedImm_wire),
    .DataOutput(ShiftedInmmediateExtend_wire)
 
 );
