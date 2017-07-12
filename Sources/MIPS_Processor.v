@@ -437,7 +437,7 @@ JumpShifter
 Adder32bits
 BranchAdder
 (
-	.Data0(PC_4_wire),
+	.Data0(EX_PCPlusFour_wire),
 	.Data1(ShiftedInmmediateExtend_wire),
 	
 	.Result(BranchAdder_wire)
