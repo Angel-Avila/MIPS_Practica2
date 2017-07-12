@@ -123,6 +123,8 @@ wire ShouldBeDiffPC_wire;
 
 wire [4:0]  rtProp_wire;
 
+wire rtProp_RegWrite_wire;
+
 wire [3:0] ALUOperation_wire;
 wire [4:0] WriteRegister_wire;
 wire [31:0] MUX_PC_wire;
@@ -243,7 +245,7 @@ Multiplexer2to1
 )
 MUX_rtProp
 (
-	.Selector(WB_RegWrite_wire),
+	.Selector(rtProp_RegWrite_wire),
 	.MUX_Data0(MUX_ForJalOutput_wire),
 	.MUX_Data1(WB_rt_wire),
 	
@@ -417,6 +419,20 @@ MemoryWriteback_Register
 // | |_) | | | (_| | | | | (__| | | |  __/\__ \
 // |____/|_|  \__,_|_| |_|\___|_| |_|\___||___/
 //                                             
+
+Multiplexer2to1
+#(
+	.NBits(1)
+)
+MUX_ForRegWrite
+(
+	.Selector(WB_Jal_wire),
+	.MUX_Data0(WB_RegWrite_wire),
+	.MUX_Data1(0),
+	
+	.MUX_Output(rtProp_RegWrite_wire)
+
+);
 
 ShiftLeft2
 BranchShifter 
