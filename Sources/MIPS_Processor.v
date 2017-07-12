@@ -517,7 +517,7 @@ Multiplexer2to1
 )
 MUX_ForJal
 (
-	.Selector(Jal_wire),
+	.Selector(WB_Jal_wire),
 	.MUX_Data0(WriteRegister_wire),
 	.MUX_Data1(31),
 	

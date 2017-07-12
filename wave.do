@@ -25,6 +25,20 @@ add wave -noupdate -color {Orange Red} -itemcolor {Orange Red} /MIPS_Processor_T
 add wave -noupdate -color {Medium Slate Blue} -itemcolor {Medium Slate Blue} /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/B
 add wave -noupdate /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/Zero
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/ArithmeticLogicUnit/ALUResult
+add wave -noupdate -divider -height 24 {T O W E R S}
+add wave -noupdate -divider {Tower A}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[16]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[8]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[0]}
+add wave -noupdate -divider {Tower B}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[17]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[9]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[1]}
+add wave -noupdate -divider {Tower C}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[18]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[10]}
+add wave -noupdate {/MIPS_Processor_TB/DUV/Data_Memory/ram[2]}
+add wave -noupdate -divider -height 24 <NULL>
 add wave -noupdate -divider Pipe_IF_ID
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/Instruction_IN
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/FetchDecode_Register/Instruction_OUT
@@ -180,7 +194,7 @@ add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Data0
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Data1
 add wave -noupdate -radix hexadecimal /MIPS_Processor_TB/DUV/MUX_ForJr/MUX_Output
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {4 ps} 0}
+WaveRestoreCursors {{Cursor 1} {22 ps} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 165
 configure wave -valuecolwidth 123
@@ -196,4 +210,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ps
 update
-WaveRestoreZoom {0 ps} {44 ps}
+WaveRestoreZoom {0 ps} {133 ps}
